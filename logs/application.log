@@ -1,0 +1,154 @@
+2015-02-12 02:01:19,383 - [INFO] - from play in pool-12-thread-5 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2015-02-12 02:01:35,923 - [INFO] - from application in play-internal-execution-context-1 
+Application started!
+
+2015-02-12 02:01:37,129 - [DEBUG] - from application in play-internal-execution-context-1 
+** Morphia datastore: carsuredev
+
+2015-02-12 02:01:37,129 - [INFO] - from application in play-internal-execution-context-1 
+Connected to Database!
+
+2015-02-12 02:01:37,331 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2015-02-12 02:02:34,554 - [DEBUG] - from application in play-akka.actor.default-dispatcher-7 
+Returned with URL: '/authenticate/openid?p=yourname.myopenid.com'
+
+2015-02-12 02:02:54,662 - [DEBUG] - from application in play-akka.actor.default-dispatcher-8 
+Returned with URL: '/authenticate/openid?p=google.com'
+
+2015-02-12 02:03:02,919 - [DEBUG] - from application in play-akka.actor.default-dispatcher-4 
+Path where we are coming from (/restricted) is different than the login URL (/login)
+
+2015-02-12 02:03:37,346 - [INFO] - from play in play-akka.actor.default-dispatcher-13 
+Starting application default Akka system.
+
+2015-02-12 02:03:38,363 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+MOCK MAILER: send email
+
+2015-02-12 02:03:38,364 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+FROM:"Play Authenticate" <you@gmail.com>
+
+2015-02-12 02:03:38,366 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+TO:"Tariq" <taqwave@yahoo.ca>
+
+2015-02-12 02:03:38,370 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+HEADER:X-Mailer:play-easymail/0.6.2
+
+2015-02-12 02:03:38,371 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+TEXT: Howdy Tariq,
+
+
+You recently signed up for PlayAuthenticate.
+
+To activate your account, follow this link now:
+http://localhost:9000/accounts/verify/ca864ad7-b793-4f5c-8b60-e4a252cb5fa3
+
+Cheers,
+The PlayAuthenticate Team
+
+2015-02-12 02:03:38,371 - [INFO] - from application in application-akka.actor.default-dispatcher-2 
+HTML: 
+Howdy Tariq,
+<br />
+<br />
+<p>
+	You recently signed up for PlayAuthenticate.<br />
+	<br />
+	Follow this link to <a href="http://localhost:9000/accounts/verify/ca864ad7-b793-4f5c-8b60-e4a252cb5fa3">activate your account</a> now.
+</p>
+<br />
+<p>
+	Cheers,<br /> 
+	<i>The PlayAuthenticate Team</i>
+</p>
+
+2015-02-12 02:11:18,763 - [DEBUG] - from application in play-akka.actor.default-dispatcher-37 
+Returned with URL: '/authenticate/openid?p=plus.google.com%2F113538744501391209108'
+
+2015-02-12 02:11:25,285 - [DEBUG] - from application in play-akka.actor.default-dispatcher-33 
+Returned with URL: '/authenticate/openid?p=plus.google.com%2F113538744501391209108'
+
+2015-02-12 02:11:44,886 - [DEBUG] - from application in play-akka.actor.default-dispatcher-33 
+Returned with URL: '/authenticate/openid?p=plus.google.com%2F113538744501391209108'
+
+2015-02-12 02:11:51,109 - [DEBUG] - from application in play-akka.actor.default-dispatcher-33 
+Path where we are coming from (/restricted) is different than the login URL (/login)
+
+2015-02-12 02:12:47,411 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+MOCK MAILER: send email
+
+2015-02-12 02:12:47,411 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+FROM:"Play Authenticate" <you@gmail.com>
+
+2015-02-12 02:12:47,411 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+TO:"Tariq" <taqwave@yahoo.ca>
+
+2015-02-12 02:12:47,411 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+HEADER:X-Mailer:play-easymail/0.6.2
+
+2015-02-12 02:12:47,411 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+TEXT: Howdy Tariq,
+
+
+You or someone else requested a password reset for your account.
+If this was not you or your intention, just relax and ignore this email.
+
+If you wish to reset your password, all you need to do is follow this link to reset your password:
+http://localhost:9000/accounts/password/reset/0f7dcadb-33ff-49db-831b-07017ef463e6
+
+Cheers,
+The PlayAuthenticate Team
+
+2015-02-12 02:12:47,411 - [INFO] - from application in application-akka.actor.default-dispatcher-3 
+HTML: 
+Howdy Tariq,
+<br />
+<br />
+<p>
+	You or someone else requested a password reset for your account.<br />
+	If that was not you or your intention, just relax and ignore this email.<br />
+</p>
+<p>
+	If you wish to reset your password, all you need to do is <a href="http://localhost:9000/accounts/password/reset/0f7dcadb-33ff-49db-831b-07017ef463e6">follow this link to reset your password</a>.
+</p>
+<p>
+	Cheers,<br /> 
+	<i>The PlayAuthenticate Team</i>
+</p>
+
+2015-02-12 03:10:15,603 - [INFO] - from play in play-internal-execution-context-2 
+Shutdown application default Akka system.
+
+2015-02-12 03:10:16,184 - [INFO] - from application in play-internal-execution-context-2 
+Application started!
+
+2015-02-12 03:10:16,447 - [DEBUG] - from application in play-internal-execution-context-2 
+** Morphia datastore: carsuredev
+
+2015-02-12 03:10:16,447 - [INFO] - from application in play-internal-execution-context-2 
+Connected to Database!
+
+2015-02-12 03:10:16,489 - [WARN] - from application in play-internal-execution-context-2 
+A user service was already registered - replacing the old one (service.MyUserServicePlugin) with the new one (service.MyUserServicePlugin), however this might hint to a configuration problem if this is a production environment.
+
+2015-02-12 03:10:16,491 - [INFO] - from play in play-internal-execution-context-2 
+Application started (Dev)
+
+2015-02-12 04:07:23,417 - [INFO] - from application in play-internal-execution-context-2 
+Application started!
+
+2015-02-12 04:07:24,085 - [DEBUG] - from application in play-internal-execution-context-2 
+** Morphia datastore: carsuredev
+
+2015-02-12 04:07:24,086 - [INFO] - from application in play-internal-execution-context-2 
+Connected to Database!
+
+2015-02-12 04:07:24,115 - [WARN] - from application in play-internal-execution-context-2 
+A user service was already registered - replacing the old one (service.MyUserServicePlugin) with the new one (service.MyUserServicePlugin), however this might hint to a configuration problem if this is a production environment.
+
+2015-02-12 04:07:24,116 - [INFO] - from play in play-internal-execution-context-2 
+Application started (Dev)
+
