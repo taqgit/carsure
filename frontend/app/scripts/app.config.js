@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('carsureApp').config(function($urlRouterProvider, $stateProvider, $httpProvider){
+  .module('carsureApp').config(function($urlRouterProvider, $stateProvider, $httpProvider, $authProvider, API_URL){
     $urlRouterProvider.otherwise('/');
     
     $stateProvider    
@@ -36,9 +36,39 @@ angular
     .state('logout',{
         url: '/logout',
         controller: 'LogoutCtrl'
+    })
+    .state('apply', {
+        url: '/apply',
+        templateUrl: '/views/apply.html',
+        controller: 'ApplyCtrl'
     });
     
+    
+    $authProvider.loginUrl = API_URL + 'login';
+    $authProvider.signupUrl = API_URL + 'signup';
+    
+    
+    $authProvider.google({
+        clientId: '120556145578-t99gv6vinikq4d684n56r0d1qei0mt1q.apps.googleusercontent.com',
+        url: API_URL + 'auth/google'
+    })
+
+    $authProvider.facebook({
+        clientId: '825544267499299',
+        url: API_URL + 'auth/facebook'
+    })
+
     $httpProvider.interceptors.push('authInterceptor');
 })
-.constant('API_URL', 'http://127.0.0.1:3000/');
+.constant('API_URL', 'http://localhost:3000/')
+
+.run(function($window){
+    var params = $window.location.search.substring(1);
+    console.log('params in app config -> '+ params);
+    if(params && $window.opener && $window.opener.location.origin === $window.location.origin){
+        var pair = params.split('=');
+        var code = decodeURIComponent(pair[1]);
+        $window.opener.postMessage(code, $window.location.origin);
+    }
+});
                                

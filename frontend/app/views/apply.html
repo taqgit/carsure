@@ -1,0 +1,11 @@
+
+<form ng-submit="submit()" name="apply" class="form-apply" novalidate>
+    <h1 class="form-signin-heading text-muted">Apply</h1>
+    <input type="email" ng-model="email" class="form-control" placeholder="Email address" autofocus=""  required>
+    <p class="help-block" ng-show="apply.email.$dirty && apply.email.$invalid">Please enter a proper email.</p>
+    
+    <input type="mobile" ng-model="mobile" class="form-control" placeholder="Mobile phone" ng-blur="sendText()" required>
+    <button ng-disabled="apply.$invalid"  class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
+</form>
+        

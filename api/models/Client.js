@@ -4,7 +4,10 @@ var ClientSchema = new mongoose.Schema(
     { 
         email: String,
         password: String,
-        active: Boolean
+        active: Boolean,
+        googleId: String,
+        facebookId: String,
+        displayName: String
     })
 
 
@@ -21,7 +24,7 @@ ClientSchema.methods.comparePasswords = function(password, callback){
 ClientSchema.pre('save', function(next){
     var client = this;
     if(!client.isModified('password'))
-        next();
+        return next();
     
     bcrypt.genSalt(10, function(err, salt) {
         if(err)  return next(err);

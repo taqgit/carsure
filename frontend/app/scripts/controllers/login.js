@@ -8,20 +8,26 @@
  * Controller of the carsureApp
  */
 angular.module('carsureApp')
-  .controller('LoginCtrl', function ($scope, $http, API_URL, alert, authToken) {
+  .controller('LoginCtrl', function ($scope, alert, auth, $auth) {
     $scope.submit = function(){
-        var url=API_URL+'login';
-        var client = {email: $scope.email, 
-                      password: $scope.password
-        };
-        console.log('client -> '+client);
-        $http.post(url, client)
-            .success(function(res){
-                alert('success', 'Logged in! ', 'Welcome, '+res.client.email);
-                authToken.setToken(res.token);
+
+        $auth.login({email: $scope.email, password: $scope.password})
+            .then(function(res){
+                var message = 'Thanks fpr coming back ' + res.data.client.email + '!';
+                if(!res.data.client.active)
+                    message = 'Just a reminder, please email activate your account soon :)';
+                alert('success', 'Welcome',message);
             })
-            .error(function(err){
-                alert('warning', 'Oops!', 'Could not log you in');
-            });    
-        }
+            .catch(handleError);    
+        };
+    
+    $scope.authenticate = function(provider) {
+        $auth.authenticate(provider).then(function (res) {
+           alert('success', 'Welcome', 'Thanks for coming back '+res.data.client.displayName+'!'); 
+        }, handleError);
+    }
+    
+    function handleError(err) {
+        alert('warning', 'Something went wrong: (', err.message);
+    }
   });

@@ -7,7 +7,7 @@ var config = require('./config.js');
 var Client = require('../models/Client.js');
 
 var model = {
-    verifyUrl: 'http://127.0.0.1:3000/auth/verifyEmail?token=',
+    verifyUrl: 'http://localhost:3000/auth/verifyEmail?token=',
     title: 'carsure',
     subTitle: 'Thanks for signing up',
     body: 'Please verify your email address by clicking the button below'
