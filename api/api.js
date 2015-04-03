@@ -8,6 +8,8 @@ var request = require('request');
 var facebookauth = require('./services/facebookAuth.js');
 var createSendToken = require('./services/jwt.js');
 var config = require('./services/config.js');
+var twilio = require('twilio');
+var client = new twilio.RestClient('AC0060490b2d3e4234ab2966513a4d88d5 ', 'd2864356c5dc890f922799ee5a78491c ');
 
 app.use(bodyParser.json());
 
@@ -23,6 +25,26 @@ app.use(function(req,res,next){
 
 app.post('/apply', function(req, res) {
     console.log('Application in progress for ' + req.body.mobile);
+    //Send an SMS text message
+    client.sendMessage({
+
+        to:'+1'+req.body.mobile, // Any number Twilio can deliver to
+        from: '+12898071433', // A number you bought from Twilio and can use for outbound communication
+        body: 'Enter this code to verify ' // body of the SMS message
+
+    }, function(err, responseData) { //this function is executed when a response is received from Twilio
+
+        if (!err) { // "err" is an error received during the request, if any
+
+            // "responseData" is a JavaScript object containing data received from Twilio.
+            // A sample response from sending an SMS message is here (click "JSON" to see how the data appears in JavaScript):
+            // http://www.twilio.com/docs/api/rest/sending-sms#example-1
+
+            console.log(responseData.from); // outputs "+14506667788"
+            console.log(responseData.body); // outputs "word to text."
+
+        }
+    });
 });
 
 app.post('/signup', function(req, res){

@@ -9,7 +9,12 @@
  */
 angular.module('carsureApp')
   .controller('ApplyCtrl', function ($scope, alert, $http, API_URL) {
+    $scope.place = null;
     $scope.submit = function() {
+        if($scope.mobile){
+            
+        }
+        
         alert('success', 'Your application is being processed! ', 'Please wait, '+$scope.email+ ' for verification text at '+$scope.mobile+' ! You are colser to get your dream car');
         
     };
@@ -19,5 +24,16 @@ angular.module('carsureApp')
             console.log('On Blur');
         });  
     }
+    
+    function showMoal () {
+        $scope.newUser={};
+    var modalInstance = $modal.open({
+      templateUrl: 'views/verifySms.html'})
+    
+    }
+    
+    
+    
+    
     
   });

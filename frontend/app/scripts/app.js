@@ -9,5 +9,5 @@
  * Main module of the application.
  */
 angular
-  .module('carsureApp', ['ui.router', 'ngAnimate', 'satellizer']);
+  .module('carsureApp', ['ui.router', 'ngAnimate', 'satellizer','google.places']);
 
