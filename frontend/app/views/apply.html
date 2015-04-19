@@ -4,14 +4,15 @@
     <input type="email" ng-model="email" class="form-control" placeholder="Email address" autofocus=""  required>
     <p class="help-block" ng-show="apply.email.$dirty && apply.email.$invalid">Please enter a proper email.</p>
     
-    <input type="mobile" ng-model="mobile" class="form-control" placeholder="Mobile phone" ng-blur="sendText()" required>
+    <input type="mobile" ng-model="mobile" class="form-control" placeholder="Mobile phone" ng-blur="sendText()" >
     <input type="phone" ng-model="phone" class="form-control" placeholder="Home phone"  required>
     
-     <input class="form-control" g-places-autocomplete force-selection="true" ng-model="place"/>
+     <input class="form-control" g-places-autocomplete force-selection="true" g-places-autocomplete-custom  placeholder="Address" ng-model="place" />
+     <input class="form-control" placeholder="City, Province, Postal Code" ng-model="cityProvZip" />
+     <input class="form-control" placeholder="Country" ng-model="country" />
+     
     
-    <button ng-disabled="apply.$invalid"  class="btn btn-lg btn-primary btn-block" type="submit" >Submit</button>
+    
+    <button ng-disabled="apply.$invalid"  class="btn btn-lg btn-primary btn-block" ng-click="showModal()" >Submit</button>
 
 </form>
-       
-<h5>Result:</h5>
-            <pre>{{place | json}}</pre>

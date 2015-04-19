@@ -25,11 +25,33 @@ module.exports = function(config) {
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/satellizer/satellizer.js',
       'bower_components/angular-animate/angular-animate.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
-      'app/scripts/**/*.js',
-      'test/mock/**/*.js',
-      'test/spec/**/*.js'
+	
+        'app/scripts/app.js',
+        'app/scripts/app.config.js',
+//        
+//        'app/scripts/directives/confirmpassword.js',
+//        'app/scripts/controllers/signup.js',
+        'app/scripts/services/alert.js',
+        'app/scripts/services/authtoken.js',
+//        'app/scripts/controllers/header.js',
+//        'app/scripts/controllers/logout.js',
+//        'app/scripts/controllers/login.js',
+        'app/scripts/services/authinterceptor.js',
+        'app/scripts/services/auth.js',
+        
+        'app/scripts/controllers/clientapi.js',
+	'test/spec/controllers/clientapi.js'
+        
+//        'app/scripts/controllers/apply.js',
+//        'app/scripts/controllers/clientapi.js',
+//        'app/scripts/controllers/main.js',
+//        'app/scripts/controllers/about.js'
+//      'app/scripts/**/*.js',
+      //'test/mock/**/*.js',
+//      'test/spec/**/*.js'
     ],
 
     // list of files / patterns to exclude
@@ -37,7 +59,7 @@ module.exports = function(config) {
     ],
 
     // web server port
-    port: 8080,
+    port: 9000,
 
     // Start these browsers, currently available:
     // - Chrome
@@ -68,10 +90,10 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // Uncomment the following lines if you are using grunt's server to run the tests
-    // proxies: {
-    //   '/': 'http://localhost:9000/'
-    // },
+     proxies: {
+       '/': 'http://localhost:9000/'
+     },
     // URL root prevent conflicts with the site root
-    // urlRoot: '_karma_'
+     urlRoot: '_karma_'
   });
 };

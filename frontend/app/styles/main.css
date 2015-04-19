@@ -89,3 +89,11 @@ body {
 .alert-hidden{
     visibility: hidden
 }
+
+.item{
+    padding: 55px;
+}
+
+.modal-body input{
+display:block;
+}
