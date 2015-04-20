@@ -47,6 +47,36 @@ app.post('/apply', function (req, res) {
     });
 });
 
+app.post('/updateClient', function (req, res) {
+    var searchClientId = req.body.client.client_id + '';
+
+    console.log('   searchClientId ' + searchClientId);
+    var query = Client.where(searchClientId);
+    Client.findById(searchClientId, function (err, client) {
+        if (err) throw err
+
+        if (!client) return res.status(401).send({
+            message: 'Client Not Found'
+        });
+
+        console.log(' Client from DB -> ' + JSON.stringify(client));
+        client.applied = true;
+        client.name = req.body.client.name;
+        client.dob = req.body.client.dob;
+        client.save(function (err) {
+            if (err)
+                console.log('Could Not Save ===================================');
+        });
+
+        //return res.json(client);
+
+
+    })
+
+
+});
+
+
 app.post('/signup', function (req, res) {
     var client = req.body;
     var searchClient = {

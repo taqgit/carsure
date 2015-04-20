@@ -48,12 +48,10 @@ angular
                 controller: 'LogoutCtrl'
             })
             .state('apply', {
-                    url: '/apply/:client_id',
-                    templateUrl: '/views/apply.html',
-                    controller: 'ApplyCtrl'
-                }
-
-            );
+                url: '/apply/:client_id',
+                templateUrl: '/views/apply.html',
+                controller: 'ApplyCtrl'
+            });
 
 
         $authProvider.loginUrl = API_URL + 'login';
@@ -77,7 +75,6 @@ angular
 
 .run(function ($window) {
     var params = $window.location.search.substring(1);
-    console.log('params in app config -> ' + params);
     if (params && $window.opener && $window.opener.location.origin === $window.location.origin) {
         var pair = params.split('=');
         var code = decodeURIComponent(pair[1]);

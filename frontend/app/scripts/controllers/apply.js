@@ -8,10 +8,11 @@
  * Controller of the carsureApp
  */
 var app = angular.module('carsureApp');
-app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http, API_URL, $modal, clientmanagement) {
+app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http, API_URL, $modal, clientmanagement, $filter) {
 
     var code = null;
     var client = {};
+    client.client_id = $stateParams.client_id;
 
     clientmanagement.findClientById($stateParams.client_id).then(function (res) {
         $scope.email = res.data.email;
@@ -23,12 +24,13 @@ app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http
     $scope.place = null;
 
     $scope.sendText = function () {
-        $http.post(API_URL + 'apply', {
-            email: $scope.email,
-            mobile: $scope.mobile
-        }).success(function () {
-            console.log('On Blur');
-        });
+        //commenting for now
+        //        $http.post(API_URL + 'apply', {
+        //            email: $scope.email,
+        //            mobile: $scope.mobile
+        //        }).success(function () {
+        //            console.log('On Blur');
+        //        });
     }
 
     $scope.showModal = function () {
@@ -45,10 +47,37 @@ app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http
         })
 
         modalInstance.result.then(function () {
+
+            client.applied = true;
+            client.name = $scope.name;
+            client.dob = $filter('date')($scope.birthday, 'mediumDate');
+            client.street = $scope.place;
+            client.cityProvZip = $scope.cityProvZip;
+            client.country = $scope.country;
+            console.log(' Let us see   the client ----------------------------------------------------> msa check box ' + $scope.msachkbox);
+            clientmanagement.updateClient(client).then(function (res) {
+                console.log('Successfully updated client in apply.js ============================');
+            }, function (err) {
+                console.log("Could not update in apply,js #######################################");
+            });
             $state.go('main');
             alert('success', 'You are close to get your dream car', ' Somebody will contact you soon!');
         });
     }
+
+    //DOB handling
+    // create function which calculates the age given the birthday as a datetime object
+    //    $scope.age = function () {
+    //        if (!$scope.birthday || $scope.birthday > new Date()) // if the birthday is not defined yet return 'undefined'
+    //            return 'undefined';
+    //        var now = new Date();
+    //        var ageinyears = Math.round((now - $scope.birthday) / (100 * 60 * 60 * 24 * 365)) / 10;
+    //        if (ageinyears < 18)
+    //            slef.apply.age.$setValidity("valid", false);
+    //        return Math.round((now - $scope.birthday) / (100 * 60 * 60 * 24 * 365)) / 10; // calculate the age in years with one decimal
+    //    };
+
+
 
 })
 
@@ -69,16 +98,16 @@ app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http
                         var street;
 
                         $scope.$on('g-places-autocomplete:select', function (event, data) {
-                            console.log('Event', event);
-                            console.log('Data', data);
+                            //                            console.log('Event', event);
+                            //                            console.log('Data', data);
 
-                            console.log('-----------------------------------------------');
+                            //                            console.log('-----------------------------------------------');
                             //                            console.log(angular.element(data.adr_address.split(',')[0])[0].innerHTML);
                             //                            console.log(angular.element(data.adr_address.split(',')[0]).text());
                             var elm = document.createElement('div');
                             elm.innerHTML = data.adr_address;
 
-                            console.log(angular.element(elm.querySelector(".street-address")).text());
+                            //                            console.log(angular.element(elm.querySelector(".street-address")).text());
 
 
                             street = $scope.place = angular.element(elm.querySelector(".street-address")).text();
@@ -88,7 +117,7 @@ app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http
                             $scope.country = angular.element(elm.querySelector(".country-name")).text()
 
 
-                            console.log('-----------------------------------------------');
+                            //                            console.log('-----------------------------------------------');
 
 
 
@@ -119,7 +148,7 @@ app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http
 
     $scope.verifySms = function () {
         var matched = (parseInt(code) === parseInt($scope.verificationcode))
-        console.log(matched);
+        console.log('Verification code matched ->' + matched);
         if (matched)
             $modalInstance.close();
         else

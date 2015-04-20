@@ -2,12 +2,18 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var ClientSchema = new mongoose.Schema({
     email: String,
+    name: String,
+    dob: String,
+    street: String,
+    cityProvZip: String,
+    country: String,
     password: String,
     active: Boolean,
     googleId: String,
     facebookId: String,
     displayName: String,
-    emailVerified: Boolean
+    emailVerified: Boolean,
+    applied: Boolean
 })
 
 

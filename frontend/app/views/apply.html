@@ -1,18 +1,43 @@
-
-<form ng-submit="submit()" name="apply" class="form-apply" novalidate >
+<form ng-submit="submit()" name="apply" class="form-apply" novalidate>
     <h1 class="form-signin-heading text-muted">Apply</h1>
-    <input type="email" ng-model="email" class="form-control" placeholder="Email address" autofocus=""  required>
-    <p class="help-block" ng-show="apply.email.$dirty && apply.email.$invalid">Please enter a proper email.</p>
-    
-    <input type="mobile" ng-model="mobile" class="form-control" placeholder="Mobile phone" ng-blur="sendText()" >
-    <input type="phone" ng-model="phone" class="form-control" placeholder="Home phone"  required>
-    
-     <input class="form-control" g-places-autocomplete force-selection="true" g-places-autocomplete-custom  placeholder="Address" ng-model="place" />
-     <input class="form-control" placeholder="City, Province, Postal Code" ng-model="cityProvZip" />
-     <input class="form-control" placeholder="Country" ng-model="country" />
-     
-    
-    
-    <button ng-disabled="apply.$invalid"  class="btn btn-lg btn-primary btn-block" ng-click="showModal()" >Submit</button>
+    <input type="email" ng-model="email" class="form-control" placeholder="Email address" autofocus="" disabled required>
+    <!--    <p class="help-block" ng-show="apply.email.$dirty && apply.email.$invalid">Please enter a proper email.</p>-->
+
+    <input type="name" name="name" ng-model="name" class="form-control" placeholder="Name" required ng-minlength="3" ng-pattern="/^\s*\w*\s*$/">
+    <p class="help-block" ng-show="apply.name.$dirty && apply.name.$invalid">Please enter valid name</p>
+
+    <input type="mobile" ng-model="mobile" class="form-control" placeholder="Mobile phone" ng-blur="sendText()">
+    <input type="phone" ng-model="phone" class="form-control" placeholder="Home phone" required>
+
+    <!--    <p>Your age is {{age()}} years.</p>-->
+    <input type="date" name="birthday" ng-model="birthday" class="form-control" placeholder="yyyy-MM-dd" min="1900-01-01" max="1999-04-21" required>
+    <p class="help-block" ng-show="apply.birthday.$dirty && apply.birthday.$invalid">You must be 16 years or older to apply.</p>
+    <!--
+    <div role="alert">
+        <span class="error" ng-show="apply.birthday.$error.required">
+         Required!</span>
+        <span class="error" ng-show="apply.birthday.$error.date">
+         Not a valid date!</span>
+    </div>
+-->
+    <input class="form-control" g-places-autocomplete force-selection="true" g-places-autocomplete-custom placeholder="Address" ng-model="place" />
+    <input class="form-control" placeholder="City, Province, Postal Code" ng-model="cityProvZip" />
+    <input class="form-control" placeholder="Country" ng-model="country" />
+
+    <input type="checkbox" name="acceptMsaCheckbox" required ng-disabled="msaClickedked!='true'" ng-model="msachkbox"> I accept Carsure's
+    <a id="readMsaNow" ng-click="msaClickedked='true'" href="/views/legal/msa.html" target="_blank">Master Services Agreement</a>
+    <span class="glyphicon-question-sign"></span>
+
+    <div class="specificHelp roundedCorners" style="top: 563px; z-index: 100; opacity: 0; display: none;">
+        <span class="helpIcon"></span>
+        <h1>Master Services Agreement</h1>
+        <p>
+            You must click on this link and review the agreement before you can check this checkbox.
+        </p>
+    </div>
+
+
+
+    <button ng-disabled="apply.$invalid" class="btn btn-lg btn-primary btn-block" ng-click="showModal()">Submit</button>
 
 </form>

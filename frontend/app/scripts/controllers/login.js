@@ -31,6 +31,7 @@ angular.module('carsureApp')
                         client_id: res.data.client._id
                     })
                 });
+                $scope.client = res.data.client;
                 alert('success', 'Welcome', 'Thanks for coming back ' + res.data.client.displayName + '!');
             }, handleError);
         }

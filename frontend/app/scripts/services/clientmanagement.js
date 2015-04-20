@@ -14,8 +14,16 @@ angular.module('carsureApp').service('clientmanagement', function clientmanageme
                 console.log('Error fetching clients !');
             }
         );
+    }
 
-
+    this.updateClient = function (client) {
+        return $http.post(API_URL + 'updateClient', {
+            client: client
+        }).then(function (res) {
+            console.log('Updatde client in clientmanagement  ++++++++++++++++++++++++++++');
+        }, function (err) {
+            console.log('Colud not update client in clientmanagement  !!!!!!!!!!!!!!');
+        })
     }
 
 
