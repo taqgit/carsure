@@ -26,16 +26,9 @@ angular.module('carsureApp')
 
         $scope.authenticate = function (provider) {
             $auth.authenticate(provider).then(function (res) {
-                console.log('JSON After login -------------------------------> ' + JSON.stringify(res.data));
-                console.log('Object After login -------------------------------> ' + res.data.client.email);
-                //                $timeout(function () {
-                //                    $state.go('apply', {
-                //                        email: res.data.client.email
-                //                    });
-                //                }, 5);
                 $timeout(function () {
                     $state.go('apply', {
-                        client: res.data.client.email
+                        client_id: res.data.client._id
                     })
                 });
                 alert('success', 'Welcome', 'Thanks for coming back ' + res.data.client.displayName + '!');

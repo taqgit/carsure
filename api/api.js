@@ -125,6 +125,27 @@ app.post('/auth/google', function (req, res) {
 });
 
 app.get('/auth/verifyEmail', emailVerification.handler);
+app.post('/findClientById', function (req, res) {
+
+    var searchClientId = req.body.clientId + '';
+
+    console.log('   searchClientId ' + searchClientId);
+    var query = Client.where(searchClientId);
+    Client.findById(searchClientId, function (err, client) {
+        if (err) throw err
+
+        if (!client) return res.status(401).send({
+            message: 'Client Not Found'
+        });
+
+        console.log(' Client from DB -> ' + JSON.stringify(client));
+
+        return res.json(client);
+
+
+    })
+
+});
 
 app.post('/login', function (req, res) {
     req.client = req.body;

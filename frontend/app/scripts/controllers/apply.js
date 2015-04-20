@@ -8,9 +8,18 @@
  * Controller of the carsureApp
  */
 var app = angular.module('carsureApp');
-app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http, API_URL, $modal) {
+app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http, API_URL, $modal, clientmanagement) {
 
-    console.log('How do we get email here ?????????????    $stateParams  -> ' + $stateParams.client);
+    var code = null;
+    var client = {};
+
+    clientmanagement.findClientById($stateParams.client_id).then(function (res) {
+        $scope.email = res.data.email;
+        $scope.client = res.data;
+        code = Math.floor((Math.random() * 1000) + 1);
+        console.log('SMS verification code ----------------------------------------------------------> ' + code);
+    });
+
     $scope.place = null;
 
     $scope.sendText = function () {
@@ -26,11 +35,19 @@ app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http
         var modalInstance;
         //        if($scope.mobile){
         modalInstance = $modal.open({
-                templateUrl: 'views/partials/verify-sms.html',
-                controller: 'verifySmsCtrl'
-            })
-            //        }
+            templateUrl: 'views/partials/verify-sms.html',
+            controller: 'verifySmsCtrl',
+            resolve: {
+                code: function () {
+                    return code;
+                }
+            }
+        })
 
+        modalInstance.result.then(function () {
+            $state.go('main');
+            alert('success', 'You are close to get your dream car', ' Somebody will contact you soon!');
+        });
     }
 
 })
@@ -94,16 +111,19 @@ app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http
 
 )
 
-.controller('verifySmsCtrl', function ($scope, $modalInstance) {
-    console.log('SMS Verify Controller ');
+.controller('verifySmsCtrl', function ($scope, $modalInstance, code) {
 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
 
     $scope.verifySms = function () {
-        console.log('Verify SMS here -------------- ');
-        $modalInstance.close();
+        var matched = (parseInt(code) === parseInt($scope.verificationcode))
+        console.log(matched);
+        if (matched)
+            $modalInstance.close();
+        else
+            alert('warning', 'Something went wrong: (', 'Code not matching)');
     };
 
 })
