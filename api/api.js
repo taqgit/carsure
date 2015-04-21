@@ -63,6 +63,9 @@ app.post('/updateClient', function (req, res) {
         client.applied = true;
         client.name = req.body.client.name;
         client.dob = req.body.client.dob;
+        client.licenseType = req.body.client.licenseType;
+        client.licenseDate = req.body.client.licenseDate;
+
         client.save(function (err) {
             if (err)
                 console.log('Could Not Save ===================================');

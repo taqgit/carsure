@@ -13,7 +13,10 @@ var ClientSchema = new mongoose.Schema({
     facebookId: String,
     displayName: String,
     emailVerified: Boolean,
+    licenseType: String,
+    licenseDate: String,
     applied: Boolean
+
 })
 
 

@@ -24,6 +24,15 @@
     <input class="form-control" placeholder="City, Province, Postal Code" ng-model="cityProvZip" />
     <input class="form-control" placeholder="Country" ng-model="country" />
 
+    <select class="form-control" name="licenseType" ng-model="licenseType" required>
+        <option value="">-- choose license type --</option>
+        <option value="G">G</option>
+        <option value="G2">G2</option>
+        <option value="G1">G1</option>
+    </select>
+    <input type="date" name="licenseDate" ng-model="licenseDate" class="form-control" placeholder="choose license date" min="1900-01-01" max="{{currentDate | date:'yyyy-MM-dd'}}">
+    <p class="help-block" ng-show="apply.licenseDate.$dirty && apply.licenseDate.$invalid">License date can not be a future date.</p>
+
     <input type="checkbox" name="acceptMsaCheckbox" required ng-disabled="msaClickedked!='true'" ng-model="msachkbox"> I accept Carsure's
     <a id="readMsaNow" ng-click="msaClickedked='true'" href="/views/legal/msa.html" target="_blank">Master Services Agreement</a>
     <span class="glyphicon-question-sign"></span>

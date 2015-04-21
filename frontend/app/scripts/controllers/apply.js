@@ -14,6 +14,10 @@ app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http
     var client = {};
     client.client_id = $stateParams.client_id;
 
+    $scope.currentDate = new Date(); // $filter("date")(new Date(), "yyyy-MM-dd");;
+
+    $scope.licenseTypes = ['G', 'G2', 'G1'];
+
     clientmanagement.findClientById($stateParams.client_id).then(function (res) {
         $scope.email = res.data.email;
         $scope.client = res.data;
@@ -54,7 +58,9 @@ app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http
             client.street = $scope.place;
             client.cityProvZip = $scope.cityProvZip;
             client.country = $scope.country;
-            console.log(' Let us see   the client ----------------------------------------------------> msa check box ' + $scope.msachkbox);
+            client.licenseType = $scope.licenseType;
+            client.licenseDate = $filter('date')($scope.licenseDate, 'mediumDate');
+            console.log(' Let us see   the client ----------------------------------------------------> msa check box ' + JSON.stringify(client));
             clientmanagement.updateClient(client).then(function (res) {
                 console.log('Successfully updated client in apply.js ============================');
             }, function (err) {
