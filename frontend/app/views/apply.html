@@ -3,13 +3,12 @@
     <input type="email" ng-model="email" class="form-control" placeholder="Email address" autofocus="" disabled required>
     <!--    <p class="help-block" ng-show="apply.email.$dirty && apply.email.$invalid">Please enter a proper email.</p>-->
 
-    <input type="name" name="name" ng-model="name" class="form-control" placeholder="Name" required ng-minlength="3" ng-pattern="/^\s*\w*\s*$/">
+    <input type="text" name="name" ng-model="name" class="form-control" placeholder="Name" required ng-minlength="3" ng-pattern="/^\s*\w*\s*$/">
     <p class="help-block" ng-show="apply.name.$dirty && apply.name.$invalid">Please enter valid name</p>
 
-    <input type="mobile" ng-model="mobile" class="form-control" placeholder="Mobile phone" ng-blur="sendText()">
-    <input type="phone" ng-model="phone" class="form-control" placeholder="Home phone" required>
+    <input type="text" name="mobile" ng-model="mobile" class="form-control" placeholder="Mobile phone" ng-blur="sendText()">
+    <!--    <input type="phone" ng-model="phone" class="form-control" placeholder="Home phone" required>-->
 
-    <!--    <p>Your age is {{age()}} years.</p>-->
     <input type="date" name="birthday" ng-model="birthday" class="form-control" placeholder="yyyy-MM-dd" min="1900-01-01" max="1999-04-21" required>
     <p class="help-block" ng-show="apply.birthday.$dirty && apply.birthday.$invalid">You must be 16 years or older to apply.</p>
     <!--
@@ -20,9 +19,9 @@
          Not a valid date!</span>
     </div>
 -->
-    <input class="form-control" g-places-autocomplete force-selection="true" g-places-autocomplete-custom placeholder="Address" ng-model="place" />
-    <input class="form-control" placeholder="City, Province, Postal Code" ng-model="cityProvZip" />
-    <input class="form-control" placeholder="Country" ng-model="country" />
+    <input type="text" name="place" class="form-control" g-places-autocomplete force-selection="true" g-places-autocomplete-custom placeholder="Address" ng-model="place" required>
+    <input type="text" name="cityProvZip" class="form-control" placeholder="City, Province, Postal Code" ng-model="cityProvZip" required>
+    <input type="text" name="country" class="form-control" placeholder="Country" ng-model="country" required>
 
     <select class="form-control" name="licenseType" ng-model="licenseType" required>
         <option value="">-- choose license type --</option>

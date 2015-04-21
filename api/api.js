@@ -23,14 +23,14 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.post('/apply', function (req, res) {
-    console.log('Application in progress for ' + req.body.mobile);
+app.post('/sendSms', function (req, res) {
+    console.log('Sending SMS to ------------------->  ' + req.body.mobile);
     //Send an SMS text message
     client.sendMessage({
 
         to: '+1' + req.body.mobile, // Any number Twilio can deliver to
         from: '+12898071433', // A number you bought from Twilio and can use for outbound communication
-        body: 'Enter this code to verify ' // body of the SMS message
+        body: 'Enter this code to verify:  ' + req.body.code // body of the SMS message
 
     }, function (err, responseData) { //this function is executed when a response is received from Twilio
 
@@ -48,11 +48,13 @@ app.post('/apply', function (req, res) {
 });
 
 app.post('/updateClient', function (req, res) {
-    var searchClientId = req.body.client.client_id + '';
+    var searchClientEmail = req.body.client.email;
 
-    console.log('   searchClientId ' + searchClientId);
-    var query = Client.where(searchClientId);
-    Client.findById(searchClientId, function (err, client) {
+    console.log('   searchClientEmail ' + req.body.client);
+    //    var query = Client.where(searchClientEmail);
+    Client.findOne({
+        'email': searchClientEmail
+    }, function (err, client) {
         if (err) throw err
 
         if (!client) return res.status(401).send({
@@ -62,7 +64,11 @@ app.post('/updateClient', function (req, res) {
         console.log(' Client from DB -> ' + JSON.stringify(client));
         client.applied = true;
         client.name = req.body.client.name;
+        client.mobile = req.body.client.mobile;
         client.dob = req.body.client.dob;
+        client.street = req.body.client.street;
+        client.cityProvZip = req.body.client.cityProvZip;
+        client.country = req.body.client.country;
         client.licenseType = req.body.client.licenseType;
         client.licenseDate = req.body.client.licenseDate;
 
@@ -182,10 +188,12 @@ app.post('/findClientById', function (req, res) {
 
 app.post('/login', function (req, res) {
     req.client = req.body;
+    console.log(' login with these ->           ' + req.client.email + ' pasowrd   ' + req.client.password);
     var searchClient = {
         email: req.client.email
     };
     Client.findOne(searchClient, function (err, client) {
+        console.log('Found client for login   ->  ' + client);
         if (err) throw err
 
         if (!client) return res.status(401).send({
@@ -193,6 +201,7 @@ app.post('/login', function (req, res) {
         });
 
         client.comparePasswords(req.client.password, function (err, isMatch) {
+            console.log('Passoword matched ?   ->  ' + isMatch);
             if (err) throw err
 
             if (!isMatch)

@@ -8,34 +8,44 @@
  * Controller of the carsureApp
  */
 var app = angular.module('carsureApp');
-app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http, API_URL, $modal, clientmanagement, $filter, $rootScope) {
+app.controller('ApplyCtrl', function ($scope, $state, alert, $http, API_URL, $modal, clientmanagement, $filter, $rootScope) {
     console.log($rootScope.client);
 
-    var code = null;
+    var code = Math.floor((Math.random() * 1000) + 1);
+    console.log('SMS verification code ----------------------------------------------------------> ' + code);
+
     var client = {};
-    client.client_id = $stateParams.client_id;
+    $scope.email = $rootScope.client.email;
+    $scope.name = $rootScope.client.name;
+    $scope.mobile = $rootScope.client.mobile;
+    $scope.birthday = $rootScope.client.dob ? new Date($rootScope.client.dob) : null;
+    $scope.place = $rootScope.client.street;
+    $scope.cityProvZip = $rootScope.client.cityProvZip;
+    $scope.country = $rootScope.client.country;
+    $scope.licenseType = $rootScope.client.licenseType;
+    $scope.licenseDate = $rootScope.client.licenseDate ? new Date($rootScope.client.licenseDate) : null;
 
     $scope.currentDate = new Date(); // $filter("date")(new Date(), "yyyy-MM-dd");;
 
     $scope.licenseTypes = ['G', 'G2', 'G1'];
 
-    clientmanagement.findClientById($rootScope.client._id).then(function (res) {
-        $scope.email = res.data.email;
-        $scope.client = res.data;
-        code = Math.floor((Math.random() * 1000) + 1);
-        console.log('SMS verification code ----------------------------------------------------------> ' + code);
-    });
+    //    clientmanagement.findClientById($rootScope.client._id).then(function (res) {
+    //        $scope.email = res.data.email;
+    //        $scope.client = res.data;
+    //        code = Math.floor((Math.random() * 1000) + 1);
+    //    });
 
     $scope.place = null;
 
     $scope.sendText = function () {
-        //commenting for now
-        //        $http.post(API_URL + 'apply', {
-        //            email: $scope.email,
-        //            mobile: $scope.mobile
-        //        }).success(function () {
-        //            console.log('On Blur');
-        //        });
+        console.log('Sending SMS -----------------------------------------   ' + $scope.mobile);
+        $http.post(API_URL + 'sendSms', {
+            email: $scope.email,
+            mobile: $scope.mobile,
+            code: code
+        }).success(function () {
+            console.log('On Blur');
+        });
     }
 
     $scope.showModal = function () {
@@ -54,7 +64,9 @@ app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http
         modalInstance.result.then(function () {
 
             client.applied = true;
+            client.email = $scope.email;
             client.name = $scope.name;
+            client.mobile = $scope.mobile;
             client.dob = $filter('date')($scope.birthday, 'mediumDate');
             client.street = $scope.place;
             client.cityProvZip = $scope.cityProvZip;

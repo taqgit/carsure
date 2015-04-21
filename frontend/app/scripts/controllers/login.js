@@ -23,7 +23,7 @@ angular.module('carsureApp')
                     password: $scope.password
                 })
                 .then(function (res) {
-                    var message = 'Thanks fpr coming back ' + res.data.client.email + '!';
+                    var message = 'Thanks for coming back ' + res.data.client.email + '!';
                     goAndApply(res);
                     if (!res.data.client.active)
                         message = 'Just a reminder, please email activate your account soon :)';
