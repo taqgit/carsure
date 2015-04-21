@@ -48,7 +48,7 @@ angular
                 controller: 'LogoutCtrl'
             })
             .state('apply', {
-                url: '/apply/:client_id',
+                url: '/apply',
                 templateUrl: '/views/apply.html',
                 controller: 'ApplyCtrl'
             });

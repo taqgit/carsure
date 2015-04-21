@@ -8,7 +8,8 @@
  * Controller of the carsureApp
  */
 var app = angular.module('carsureApp');
-app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http, API_URL, $modal, clientmanagement, $filter) {
+app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http, API_URL, $modal, clientmanagement, $filter, $rootScope) {
+    console.log($rootScope.client);
 
     var code = null;
     var client = {};
@@ -18,7 +19,7 @@ app.controller('ApplyCtrl', function ($scope, $state, $stateParams, alert, $http
 
     $scope.licenseTypes = ['G', 'G2', 'G1'];
 
-    clientmanagement.findClientById($stateParams.client_id).then(function (res) {
+    clientmanagement.findClientById($rootScope.client._id).then(function (res) {
         $scope.email = res.data.email;
         $scope.client = res.data;
         code = Math.floor((Math.random() * 1000) + 1);
