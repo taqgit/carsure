@@ -52,6 +52,11 @@ angular
                 url: '/apply',
                 templateUrl: 'app/views/apply.html',
                 controller: 'ApplyCtrl'
+            })
+            .state('resetcreds', {
+                url: '/resetcreds',
+                templateUrl: 'app/views/resetcreds.html',
+                controller: 'ResetPasswordCtrl'
             });
 
 

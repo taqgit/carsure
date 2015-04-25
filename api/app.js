@@ -129,7 +129,27 @@ app.post('/signup', function (req, res) {
         });
     });
 });
+app.post('/resetcreds', function (req, res) {
+    var client = req.body;
+    var searchClient = {
+        email: client.email
+    };
+    var newClient = new Client({
+        email: client.email,
+        password: client.password
+    });
+    Client.findOne(searchClient, function (err, client) {
+        if (err) throw err
 
+        if (client) return res.status(401).send({
+            message: 'Email already exists'
+        });
+        emailVerification.send(searchClient.email);
+        newClient.save(function (err) {
+            createSendToken(newClient, res);
+        });
+    });
+});
 app.post('/auth/facebook', facebookauth);
 app.post('/auth/google', function (req, res) {
     //    console.log('code '+req.body.code);    
