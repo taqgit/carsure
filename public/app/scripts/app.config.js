@@ -73,7 +73,7 @@ angular
         $httpProvider.interceptors.push('authInterceptor');
     })
 
-.constant('API_URL', 'http://hidden-falls-3003.herokuapp.com/')
+.constant('API_URL', 'http://www.carsure.biz/')
 
 .run(function ($window) {
     var params = $window.location.search.substring(1);
