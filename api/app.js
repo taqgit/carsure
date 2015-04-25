@@ -269,6 +269,6 @@ mongoose.connect('mongodb://admin:admin@ds045057.mongolab.com:45057/carsuredev')
 
 
 // Start server
-server.listen(port, ip, function () {
+server.listen(port, function () {
     console.log('Express server listening on %d, in %s mode', port, 'dev or prod');
 });
