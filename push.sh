@@ -2,4 +2,4 @@ git add -A
 
 git commit -m "root"
 
-git heroku push master
+git push heroku  master
