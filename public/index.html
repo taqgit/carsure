@@ -1,0 +1,97 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <base href="/">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) /app/styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="app/vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="app/vendor/animate.css/animate.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) /app/styles/main.css -->
+    <link rel="stylesheet" href="app/styles/bootstrap-superhero.css" />
+    <link rel="stylesheet" href="app/styles/main.css">
+    <link rel="stylesheet" href="app/vendor/angular-google-places-autocomplete/src/autocomplete.css">
+    <!-- endbuild -->
+</head>
+
+<body ng-app="carsureApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="container" ng-cloak>
+        <div ng-include="'app/views/header.html'"></div>
+
+        <div ui-view=""></div>
+        <div class="alert alert-{{alert.type}} animated main-alert" ng-class="{'flipInY': alert.show, 'flipOutY': !alert.show, 'alert-hidden': !alert.hasBeenShown}"><strong>{{alert.title}}</strong>{{alert.message}} </div>
+
+        <div class="footer">
+            <div class="container">
+                <p><span class="glyphicon glyphicon-heart"></span>carsure</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+        ! function (A, n, g, u, l, a, r) {
+            A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+                    (A[l].q = A[l].q || []).push(arguments)
+                }, A[l].l = +new Date, a = n.createElement(g),
+                r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+        }(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-XXXXX-X');
+        ga('send', 'pageview');
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+
+
+
+    <!-- build:js(.) app/scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="app/vendor/jquery/dist/jquery.js"></script>
+    <script src="app/vendor/angular/angular.js"></script>
+    <script src="app/vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="app/vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="app/vendor/satellizer/satellizer.js"></script>
+    <script src="app/vendor/angular-animate/angular-animate.js"></script>
+    <script src="app/vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="app/vendor/angular-google-places-autocomplete/src/autocomplete.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) app/scripts/scripts.js -->
+    <script src="app/scripts/app.js"></script>
+    <script src="app/scripts/app.config.js"></script>
+
+    <script src="app/scripts/directives/confirmpassword.js"></script>
+    <script src="app/scripts/controllers/signup.js"></script>
+    <script src="app/scripts/services/alert.js"></script>
+    <script src="app/scripts/services/authtoken.js"></script>
+    <script src="app/scripts/controllers/header.js"></script>
+    <script src="app/scripts/controllers/logout.js"></script>
+    <script src="app/scripts/controllers/login.js"></script>
+    <script src="app/scripts/services/authinterceptor.js"></script>
+    <script src="app/scripts/services/auth.js"></script>
+    <script src="app/scripts/services/clientmanagement.js"></script>
+    <script src="app/scripts/controllers/apply.js"></script>
+    <!--        <script src="app/scripts/controllers/client.js"></script>-->
+    <script src="app/scripts/controllers/clientapi.js"></script>
+    <script src="app/scripts/controllers/main.js"></script>
+    <script src="app/scripts/controllers/about.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>

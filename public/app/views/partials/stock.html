@@ -1,0 +1,18 @@
+<div>
+    <span class="name">Stock Name</span>
+    <span ng-bind="stockTitle"></span>
+    
+    <span ng-transclude></span>
+    
+    <span class="price">Stock Price</span>
+    <span ng-bind="stockData.price | currency"></span>
+<!--    <span class="change" ng-bind="change(stockData)"></span>-->
+<!--    <button class="btn" ng-click="changeStockInDirective()">changeStockInDirective</button>-->
+    
+    <br/><br/><br/>
+    
+    <button class="btn" ng-click="onSelect()">Select Me</button>
+    
+    
+    
+</div>
