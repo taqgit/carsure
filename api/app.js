@@ -264,7 +264,7 @@ var server = require('http').createServer(app);
 var port = process.env.PORT || 3000;
 var ip = process.env.IP || 'localhost';
 
-mongoose.connect('mongodb://admin:admin@ds045057.mongolab.com:45057/carsuredev');
+//mongoose.connect('mongodb://admin:admin@ds045057.mongolab.com:45057/carsuredev');
 
 
 
