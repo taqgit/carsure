@@ -21,11 +21,25 @@
 </head>
 
 <body ng-app="carsureApp">
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=825544267499299";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
+
     <div class="container" ng-cloak>
         <div ng-include="'views/header.html'"></div>
 
@@ -77,6 +91,7 @@
 
     <script src="app/scripts/directives/confirmpassword.js"></script>
     <script src="app/scripts/controllers/signup.js"></script>
+    <script src="app/scripts/controllers/resetcreds.js"></script>
     <script src="app/scripts/services/alert.js"></script>
     <script src="app/scripts/services/authtoken.js"></script>
     <script src="app/scripts/controllers/header.js"></script>

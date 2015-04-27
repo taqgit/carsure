@@ -55,8 +55,8 @@ angular
             })
             .state('resetcreds', {
                 url: '/resetcreds',
-                templateUrl: 'app/views/resetcreds.html',
-                controller: 'ResetPasswordCtrl'
+                templateUrl: 'app/views/forgotpassword.html',
+                controller: 'ResetcredsCtrl'
             });
 
 
