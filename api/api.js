@@ -238,7 +238,7 @@ app.get('/clients', function (req, res) {
     });
 });
 
-mongoose.connect('mongodb://admin:admin@ds045057.mongolab.com:45057/carsuredev');
+mongoose.connect('mongodb://admin:admin@ds051534.mongolab.com:51534/carsuredev');
 
 var server = app.listen(3000, function () {
     console.log('api listening on ', server.address().port);
