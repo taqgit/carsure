@@ -1,0 +1,51 @@
+<div ng-controller="ClientController as clientCtrl" class="item">
+    <div ng-repeat="client in clientCtrl.clients">
+        <div><span ng-bind="client.email"></span>
+        </div>
+    </div>
+    <div ng-repeat="s in clientCtrl.stocks">
+<!--        <div ng-include="clientCtrl.stockTemplate"></div>-->
+        <div class="stock-widget" stock-data="s" stock-title="stock {{$index}}.   {{s.name}}" when-select="clientCtrl.selectedStock(stockName, stockPrice)">
+        This content is now displayed
+        </div>
+    </div>
+<!--
+    <div>
+        <button class="btn save" ng-click="clientCtrl.changeFirstStock()">changeFirstStock</button>
+        <button class="btn save" ng-click="clientCtrl.changeAllStocks()">changeAllStocks</button>
+    </div>
+-->
+    <br/>
+    <br/>
+    <br/>
+    <div>
+        <ul class="nav nav-pills pull-left">
+
+            <li>
+                <button ng-click="clientCtrl.tabIt('tab1')" class="btn save">Tab1</button>
+            </li>
+            <li>
+                <button ng-click="clientCtrl.tabIt('tab2')" class="btn save">Tab2</button>
+            </li>
+            <li>
+                <button ng-click="clientCtrl.tabIt('tab3')" class="btn save">Tab3</button>
+            </li>
+            <li>
+                <button ng-click="clientCtrl.clearTab()" class="btn save">Default</button>
+            </li>
+            <li>
+                <button ng-click="clientCtrl.clearTab()" class="btn save">None</button>
+            </li>
+        </ul>
+    </div>
+    <br/>
+    <br/>
+    <div>
+        <div ng-switch="clientCtrl.currentTab">
+            <div ng-switch-when="tab1" class="name">Tab1 content</div>
+            <div ng-switch-when="tab2" class="pull-left">Tab2 was clicked</div>
+            <div ng-switch-when="tab3" class="pull-left">Tab3 was clicked</div>
+            <div ng-switch-default class="pull-left">None was clicked</div>
+        </div>
+    </div>
+</div>

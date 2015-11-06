@@ -3,3 +3,7 @@ dist
 .tmp
 .sass-cache
 bower_components
+<<<<<<< HEAD
+=======
+.DS_Store
+>>>>>>> ae105bf6221c9aa08e4ff0e852f3ed4b4cc7c751
